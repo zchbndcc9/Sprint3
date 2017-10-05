@@ -1,6 +1,6 @@
 #ifndef DSVECTOR_H
 #define DSVECTOR_H
-#include "../../lib/dsstring.h"
+#include "dsstring.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>

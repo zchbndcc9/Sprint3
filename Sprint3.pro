@@ -4,7 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    algorithms.cpp
+    algorithms.cpp \
+    dsstring.cpp \
+    readinandparse.cpp
 
 HEADERS += \
-    algorithms.h
+    algorithms.h \
+    dsstring.h \
+    dsvector.h \
+    readinandparse.h
