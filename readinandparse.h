@@ -17,7 +17,7 @@ public:
     readInAndParse();
 
     //reads input from argvs
-    void readInput(char* input_file, char* outpath);
+    void readInput(char* input_file);
     ~readInAndParse();
 
 
