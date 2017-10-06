@@ -5,26 +5,31 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-//    int arr[10];
+    int arr[100];
 
-//    for(int i = 0; i < 10; i++){
-//        arr[i] = (rand() % 10) + 1;
+     cout << "Unsorted Array" << endl;
+    for(int i = 0; i < 100; i++){
+        arr[i] = (rand() % 100) + 1;
 
-//        cout << arr[i] << ' ';
-//    }
+        cout << arr[i] << ' ';
+    }
 
-//    Algorithms a;
 
-//    int size = 10;
-//    int tot = 0;
-//    a.quickSort(arr, 0, 9, tot, size);
+    Algorithms a;
 
-//    cout << '\n' << '\n' << endl;
-//    for(int i = 0; i < 10; i++){
-//        cout << arr[i] << ' ';
-//    }
-    readInAndParse rh;
-    rh.readInput(argv[1]);
+    int size = 100;
+    int tot = 0;
+    a.quickSort(arr, 0, 99, tot, size);
+
+    cout << '\n' << '\n' << endl;
+     cout << "'Sorted' array" << endl;
+    for(int i = 0; i < 100; i++){
+
+        cout << arr[i] << ' ';
+    }
+    cout << '\n' << endl;
+//    readInAndParse rh;
+//    rh.readInput(argv[1]);
 
 
 }

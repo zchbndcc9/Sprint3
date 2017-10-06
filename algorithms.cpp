@@ -1,6 +1,10 @@
 #include "algorithms.h"
-
+using namespace std;
 void Algorithms::quickSort(int arr[], int low, int high, int& tot, int& fSize){
+    //low is 0
+    //high is 9
+    //tot is 0
+    //size is 10
     if(low < high){
         int i, j;
 
@@ -12,10 +16,20 @@ void Algorithms::quickSort(int arr[], int low, int high, int& tot, int& fSize){
 }
 
 void Algorithms::partition(int arr[], int low, int high, int& i, int& j, int& tot){
+
+    //low is 0
+    //high is 9
+    //i is 0
+    //j is 0
+    //tot is 0
     int p, q, pivot = medianOfThree(arr, low, high);
 
-    i = p = low + 1;
-    j = q = high;
+    //SPLIT UP THESE VARIABLE DECLARATIONS
+    p = low + 1;
+    i = p;
+    q = high;
+    j = q;
+
 
     if(pivot != low) {
         swap(&arr[low], &arr[pivot]);
@@ -23,12 +37,21 @@ void Algorithms::partition(int arr[], int low, int high, int& i, int& j, int& to
 
     pivot = arr[low];
 
+
     //loop until indices cross
     while(true){
-
+        //i starts at
         while(arr[i] < pivot) {
             i++;
         }
+
+
+        //ADDED THIS FUCTION
+       if(arr[i]== pivot){
+            arr[i-1] = arr[i];
+        }
+       //END OF ADDED FUNCTION
+
 
         while(arr[j] > pivot) {
             j--;
@@ -43,11 +66,13 @@ void Algorithms::partition(int arr[], int low, int high, int& i, int& j, int& to
 
         //check pivot
         if(arr[i] == pivot){
-            swap(&arr[p], &arr[i]);
-            p++;
+            swap(&arr[i], &arr[i]);
+            i++;
+            //CHANGED THESE VARIABLES FROM (P?) TO I
         } else if(arr[j] == pivot){
-            swap(&arr[q], &arr[j]);
-            q--;
+            swap(&arr[j], &arr[j]);
+            j--;
+            //CHANGED THESE VARIABLES FROM (Q?) TO J
         }
     }
 
@@ -79,6 +104,8 @@ void Algorithms::sortString(){
 }
 
 int Algorithms::medianOfThree(int arr[], int low, int high){
+    //low is 0
+    //high is 10
     int mid = (high+low)/2;
 
     if(arr[high] > arr[low]) {
