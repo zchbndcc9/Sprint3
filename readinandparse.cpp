@@ -32,6 +32,7 @@ void readInAndParse::readInput(char* input_file){
     //      It might be faster(????)
     while(!inFile.eof()){
 
+        //inFile >> buffer
         inFile.getline(buffer, 31);
         dsString line(buffer);
         //wordVec/array.push_back(line)
