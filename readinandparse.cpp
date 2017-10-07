@@ -20,18 +20,22 @@ void readInAndParse::readInput(char* input_file){
 
     //can use index[0].w to call the variable or whatever in getPageNums
     char buffer[80];
-    int totNums;
-    int numsToPrint;
+    int totWords;
+    int wordsToPrint;
     dsString word;
 
-    inFile >> totNums;
-    inFile >> numsToPrint;
+    //ZACH: changed var names so that is more clear
+    inFile >> totWords;
+    inFile >> wordsToPrint;
     //while the file isnt at the end
+    //ZACH: Yo, I added that one line below and that should do the same thing
+    //      It might be faster(????)
     while(!inFile.eof()){
 
-        inFile.getline(buffer, 80);
-
+        inFile.getline(buffer, 31);
         dsString line(buffer);
+        //wordVec/array.push_back(line)
+   //}
 
             int start = 0;
             //for loop for parsing words line by line
@@ -59,8 +63,8 @@ void readInAndParse::readInput(char* input_file){
 
 
     }
-    cout << totNums << endl;
-    cout << numsToPrint << endl;
+    cout << totWords << endl;
+    cout << wordsToPrint << endl;
     for(int i = 0; i < indexOfWords.size(); i++){
         cout << indexOfWords[i]  << endl;
     }

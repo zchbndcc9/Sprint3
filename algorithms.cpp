@@ -1,10 +1,6 @@
 #include "algorithms.h"
 using namespace std;
 void Algorithms::quickSort(int arr[], int low, int high, int& tot, int& fSize){
-    //low is 0
-    //high is 9
-    //tot is 0
-    //size is 10
     if(low < high){
         int i, j;
 
@@ -17,18 +13,13 @@ void Algorithms::quickSort(int arr[], int low, int high, int& tot, int& fSize){
 
 void Algorithms::partition(int arr[], int low, int high, int& i, int& j, int& tot){
 
-    //low is 0
-    //high is 9
-    //i is 0
-    //j is 0
-    //tot is 0
     int p, q, pivot = medianOfThree(arr, low, high);
 
     //SPLIT UP THESE VARIABLE DECLARATIONS
-    p = low + 1;
-    i = p;
-    q = high;
-    j = q;
+    i = low + 1;
+    p = i;
+    j = high;
+    q = j;
 
 
     if(pivot != low) {
@@ -45,7 +36,7 @@ void Algorithms::partition(int arr[], int low, int high, int& i, int& j, int& to
             i++;
         }
 
-
+        //ZACH: This function essentially overwrites other data in array
         //ADDED THIS FUCTION
        if(arr[i]== pivot){
             arr[i-1] = arr[i];
@@ -66,12 +57,10 @@ void Algorithms::partition(int arr[], int low, int high, int& i, int& j, int& to
 
         //check pivot
         if(arr[i] == pivot){
-            swap(&arr[i], &arr[i]);
-            i++;
+            p++;
             //CHANGED THESE VARIABLES FROM (P?) TO I
         } else if(arr[j] == pivot){
-            swap(&arr[j], &arr[j]);
-            j--;
+            q--;
             //CHANGED THESE VARIABLES FROM (Q?) TO J
         }
     }
@@ -104,8 +93,6 @@ void Algorithms::sortString(){
 }
 
 int Algorithms::medianOfThree(int arr[], int low, int high){
-    //low is 0
-    //high is 10
     int mid = (high+low)/2;
 
     if(arr[high] > arr[low]) {
