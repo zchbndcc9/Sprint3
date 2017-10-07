@@ -7,7 +7,6 @@
 class Algorithms {
 public:
     void quickSort(int arr[], int, int);
-    void partition(int[], int, int, int&, int&, int&);
     void twoWayPart(int[], int, int, int&, int&);
     void sortLength();
     void sortString();

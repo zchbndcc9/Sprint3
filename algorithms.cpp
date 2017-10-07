@@ -1,87 +1,49 @@
 #include "algorithms.h"
 using namespace std;
-void Algorithms::quickSort(int arr[], int low, int high, int& tot, int& fSize){
+void Algorithms::quickSort(int arr[], int low, int high){
+
     if(low < high){
         int i, j;
 
-        partition(arr, low, high, i, j, tot);
+        dualPivot(arr, low, high, i, j);
 
-        quickSort(arr, low, j, tot, fSize);
-        quickSort(arr, i, high, tot, fSize);
+        quickSort(arr, low, i - 1);
+        quickSort(arr, i + 1, j - 1);
+        quickSort(arr, j + 1, high);
     }
 }
 
-void Algorithms::partition(int arr[], int low, int high, int& i, int& j, int& tot){
+void Algorithms::dualPivot(int arr[], int low, int high, int& left, int& right){
 
-    int p, q, pivot = medianOfThree(arr, low, high);
+    if(arr[low] > arr[high])
+        swap(&arr[high], &arr[low]);
 
-    //SPLIT UP THESE VARIABLE DECLARATIONS
-    i = low + 1;
-    p = i;
-    j = high;
-    q = j;
+   //traverse left to right
+     int lp, i;
+   //traverse right to left
+     int rp;
 
+     left = i = low + 1;
+     right = high - 1;
 
-    if(pivot != low) {
-        swap(&arr[low], &arr[pivot]);
-    }
+   //Left pivot
+     lp = arr[low];
+   //Right pivot
+     rp = arr[high];
 
-    pivot = arr[low];
+     while(i <= right){
+       //traverse from left to right
+         if(arr[i] < lp){
+             swap(&arr[i++], &arr[left++]);
+         } else if(arr[i] > rp){
+             swap(&arr[i], &arr[right--]);
+         } else {
+             i++;
+         }
+     }
 
-
-    //loop until indices cross
-    while(true){
-        //i starts at
-        while(arr[i] < pivot) {
-            i++;
-        }
-
-        //ZACH: This function essentially overwrites other data in array
-        //ADDED THIS FUCTION
-       if(arr[i]== pivot){
-            arr[i-1] = arr[i];
-        }
-       //END OF ADDED FUNCTION
-
-
-        while(arr[j] > pivot) {
-            j--;
-            if(j == low)
-                break;
-        }
-
-        if(i > j)
-            break;
-
-        swap(&arr[i], &arr[j]);
-
-        //check pivot
-        if(arr[i] == pivot){
-            p++;
-            //CHANGED THESE VARIABLES FROM (P?) TO I
-        } else if(arr[j] == pivot){
-            q--;
-            //CHANGED THESE VARIABLES FROM (Q?) TO J
-        }
-    }
-
-    if(p != low){
-        p--;
-        //transfer pivot ends to middle
-        for(p; p >= low; p--, j--){
-            swap(&arr[p], &arr[j]);
-        }
-    }
-
-    if(q != high){
-        q++;
-        for(q; q <= high; q++, i++){
-            swap(&arr[q], &arr[i]);
-        }
-    }
-
-    //add sorted to total
-    tot += (i - j) - 1;
+     swap(&arr[low], &arr[--left]);
+     swap(&arr[high], &arr[++right]);
 }
 
 void Algorithms::sortLength(){
@@ -107,5 +69,4 @@ void Algorithms::swap(int* a, int* b){
     *a = *b;
     *b = temp;
 }
-
 
