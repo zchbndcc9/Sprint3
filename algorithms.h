@@ -6,9 +6,8 @@
 
 class Algorithms {
 public:
-    void quickSort(int arr[], int, int);
-    void partition(int[], int, int, int&, int&, int&);
-    void twoWayPart(int[], int, int, int&, int&);
+    void quickSort(int[], int, int);
+    void dualPivot(int[], int, int, int&, int&);
     void sortLength();
     void sortString();
     int medianOfThree(int[], int, int);

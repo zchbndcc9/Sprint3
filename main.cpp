@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include "readinandparse.h"
 #include "algorithms.h"
 
@@ -6,32 +7,28 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
+    int size = 1000000;
+    int * arr = new int[1000000];
 
-    int size = 10;
-    int arr[10];
-
-     cout << "Unsorted Array" << endl;
+     cout << "Sorting..." << endl;
     for(int i = 0; i < size; i++){
-        arr[i] = (rand() % 5) + 1;
-
-        cout << arr[i] << ' ';
+        arr[i] = (rand() % 30) + 1;
     }
 
 
     Algorithms a;
 
     int tot = 0;
-    a.quickSort(arr, 0, size - 1, tot, size);
+    std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+    a.quickSort(arr, 0, size - 1);
+    std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 
-    cout << '\n' << '\n' << endl;
-     cout << "'Sorted' array" << endl;
-    for(int i = 0; i < size; i++){
 
-        cout << arr[i] << ' ';
-    }
-    cout << '\n' << endl;
+    cout << "sorted." << '\n' << "time: " << duration << " milli"
+                                                         "seconds" << '\n';
 //    readInAndParse rh;
 //    rh.readInput(argv[1]);
 
-
+    delete[] arr;
 }
