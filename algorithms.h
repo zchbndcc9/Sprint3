@@ -11,6 +11,7 @@ public:
     void sortLength();
     void sortString();
     int medianOfThree(int[], int, int);
+    bool isSorted(int[], int, int);
     inline void swap(int*, int*);
 };
 
