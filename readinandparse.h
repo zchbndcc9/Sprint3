@@ -3,13 +3,14 @@
 #include <iostream>
 #include "dsvector.h"
 #include "dsstring.h"
+
 class readInAndParse
 {
 private:
 
-    //private vector of Word class
-    dsVector<dsString> indexOfWords;
-    int lineCount;
+//    //private vector of Word class
+//    dsVector<dsString> indexOfWords;
+//    int lineCount;
 
 public:
 
@@ -17,7 +18,7 @@ public:
     readInAndParse();
 
     //reads input from argvs
-    void readInput(char* input_file);
+    void readInput(dsVector<dsString>&, char*);
     ~readInAndParse();
 
 
