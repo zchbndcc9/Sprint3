@@ -18,7 +18,7 @@ public:
     readInAndParse();
 
     //reads input from argvs
-    void readInput(dsVector<dsString>&, char*);
+    void readInput(dsVector<dsString>&, char*, int&);
     ~readInAndParse();
 
 

@@ -8,7 +8,7 @@ readInAndParse::readInAndParse() {
 }
 
 //reads in dictionary file from argv[1]
-void readInAndParse::readInput(dsVector<dsString>& vec, char* input_file){
+void readInAndParse::readInput(dsVector<dsString>& vec, char* input_file, int& wordsToPrint){
 
     ifstream inFile(input_file);
 
@@ -17,12 +17,11 @@ void readInAndParse::readInput(dsVector<dsString>& vec, char* input_file){
         cout <<"Houston we have a problem!!!!!!!!!!!" << endl;
 
     //can use index[0].w to call the variable or whatever in getPageNums
-    int totWords;
-    int wordsToPrint;
-    dsString line;
 
-    //ZACH: changed var names so that is more clear
-    inFile >> totWords;
+    dsString line;
+    int totalWords;
+
+    inFile >> totalWords;
     inFile >> wordsToPrint;
 
     char buffer[80] ={0};
