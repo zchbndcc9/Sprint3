@@ -7,29 +7,23 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    int size = 100000;
-    int * arr = new int[100000];
-
-    for(int i = 0; i < size; i++){
-        arr[i] = (rand() % 30) + 1;
-    }
-
-
     Algorithms a;
+    readInAndParse rh;
+    dsVector<dsString> vec;
+    int wordsToSort;
 
-    int tot = 0;
+    rh.readInput(vec, argv[1], wordsToSort);
+
     cout << "Sorting..." << endl;
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-    a.quickSort(arr, 0, size - 1);
+    a.quickSort(vec, 0, vec.size()-1);
     std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 
 
-    cout << "sorted." << '\n' << "time: " << duration << " milli"
-                                                         "seconds" << '\n';
+    cout << "sorted." << '\n' << "time: " << duration << " microseconds" << '\n';
 
-//    readInAndParse rh;
-//    rh.readInput(argv[1]);
-
-    delete[] arr;
+    for(int i = 0; i < vec.size(); i++){
+        cout << vec[i] << endl;
+    }
 }
