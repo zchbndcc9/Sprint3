@@ -10,8 +10,9 @@ void Algorithms::quickSort_Length(dsVector<dsString>& vec, int low, int high){
 
     quickSort_Length(vec, low, i - 1);
     //checks middle to see if it is sorted or not
-    if(!isSorted_Length(vec, i + 1, j - 1))
+    if(!isSorted_Length(vec, i + 1, j - 1)){
         quickSort_Length(vec, i + 1, j - 1);
+    }
     quickSort_Length(vec, j + 1, high);
 }
 
@@ -57,8 +58,7 @@ void Algorithms::quickSort_String(dsVector<dsString>& vec, int low, int high){
 
     quickSort_String(vec, low, i - 1);
     //checks middle to see if it is sorted or not
-    if(!isSorted(vec, i + 1, j - 1))
-        quickSort_String(vec, i + 1, j - 1);
+    quickSort_String(vec, i + 1, j - 1);
     quickSort_String(vec, j + 1, high);
 }
 
@@ -118,15 +118,23 @@ void Algorithms::insertionSort(dsVector<dsString>& vec, int low, int high){
 void Algorithms::sortLength(dsVector<dsString>& vec, int low, int high, const int wordsToSort){
     int wordsSorted = 0;
 
-   // quickSort(vec, low, high, wordsSorted, wordsToSort);
+    quickSort_Length(vec, low, high);
 }
 
 void Algorithms::sortString(dsVector<dsString>& vec, int low, int high){
-    //if less than 30, insertion sort
-    if((high - low) >= 29){
-        insertionSort(vec, low, high);
-    } else {
-        quickSort_String(vec, low, high);
+    int i = low;
+    int j = low;
+
+    while(j < high){
+        if(vec[j+1].size() > vec[j].size()){
+            //if less than 30, insertion sort
+            ((j - i) <= 29) ? insertionSort(vec, i, j) :
+                              quickSort_String(vec, i, j);
+            i = j + 1;
+            j++;
+        } else {
+            j++;
+        }
     }
 }
 
