@@ -38,12 +38,13 @@ void readandWrite::writeOutput(dsString*& arr, char * output_file, int& wordsToP
     ofstream outFile(output_file);
 
     if (!outFile)
-        cout << output_file << " COULD NOT BE READ." << endl;
+        cout << output_file << " COULD NOT BE OPENED" << endl;
 
     for(int i = 0; i < wordsToPrint; i++){
-        outFile << arr[i] << endl;
+        outFile << arr[i] << '\n';
     }
 
+    outFile << endl;
     outFile.close();
 }
 
