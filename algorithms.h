@@ -2,17 +2,32 @@
 #define ALGORITHMS_H
 
 #include <iostream>
-#include <cstring>
+#include <dsvector.h>
+#include <dsstring.h>
 
 class Algorithms {
 public:
-    void quickSort(int[], int, int);
-    void dualPivot(int[], int, int, int&, int&);
-    void sortLength();
-    void sortString();
-    int medianOfThree(int[], int, int);
-    bool isSorted(int[], int, int);
-    inline void swap(int*, int*);
+    void quickSort(dsVector<dsString>&, int, int);
+    void dualPivot(dsVector<dsString>&, int, int, int&, int&);
+    void quickSort_String(dsVector<dsString>&, int, int);
+    void dualPivot_String(dsVector<dsString>&, int, int, int&, int&);
+
+    int medianOfThree(const dsVector<dsString>&, int, int);
+
+    void insertionSort(dsVector<dsString>&, int, int);
+
+    void sortLength(dsVector<dsString>&, int, int, int);
+    void sortString(dsVector<dsString>&, int, int);
+
+    bool isSorted_Length(const dsVector<dsString>&, int, int);
+    bool isSorted(const dsVector<dsString>&, int, int);
+
+    template <class T>
+    inline void swap(T* a, T* b){
+        T temp = *a;
+        *a = *b;
+        *b = temp;
+    }
 };
 
 #endif // ALGORITHMS_H
