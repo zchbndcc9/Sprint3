@@ -20,11 +20,18 @@ int main(int argc, char *argv[]) {
 
     cout << "Sorting..." << endl;
     t1 = std::chrono::high_resolution_clock::now();
-    a.quickSort(vec, 0, vec.size()-1);
+    a.sortLength(vec, 0, vec.size()-1, wordsToSort);
     t2 = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 
-    cout << "sorted." << '\n' << "time: " << duration << " microseconds" << '\n';
+     cout << "Sorted by length.  " << '\n' << "time: " << duration << " microseconds" << '\n';
+
+    t1 = std::chrono::high_resolution_clock::now();
+    a.sortString(vec, 0, vec.size()-1);
+    t2 = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+
+    cout << "Sorted alphabetically.  " << '\n' << "time: " << duration << " microseconds" << '\n';
 
     t1 = std::chrono::high_resolution_clock::now();
     rh.writeOutput(vec, argv[2], wordsToSort);
