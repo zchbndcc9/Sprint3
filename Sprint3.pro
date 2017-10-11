@@ -6,10 +6,11 @@ CONFIG -= qt
 SOURCES += main.cpp \
     dsstring.cpp \
     algorithms.cpp \
-    readinandparse.cpp
+    sorter.cpp \
+    readandwrite.cpp
 
 HEADERS += \
     algorithms.h \
     dsstring.h \
-    dsvector.h \
-    readinandparse.h
+    sorter.h \
+    readandwrite.h
