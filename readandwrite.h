@@ -9,10 +9,9 @@ struct readandWrite {
     readandWrite();
 
     //reads in input file from argv[1]
-    void readInput(dsVector<dsString>&, char*, int&);
-    void readInput(dsString*&, char*, int&);
+    void readInput(dsString*&, char*, int&, int&);
     //wirtes out to output file to argv[2]
-    void writeOutput(dsVector<dsString>&, char*, int&);
+    void writeOutput(dsString*&, char*, int&);
     ~readandWrite();
 };
 

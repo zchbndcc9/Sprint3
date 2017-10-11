@@ -6,7 +6,7 @@ readandWrite::readandWrite(){
 
 }
 
-void readandWrite::readInput(dsVector<dsString>& vec, char* input_file, int& wordsToPrint){
+void readandWrite::readInput(dsString*& arr, char* input_file, int& wordsToPrint, int& totalWords){
 
     ifstream inFile(input_file);
 
@@ -14,32 +14,34 @@ void readandWrite::readInput(dsVector<dsString>& vec, char* input_file, int& wor
     if (!inFile)
         cout << input_file << " COULD NOT BE READ." << endl;
 
-    int totalWords;
-
     inFile >> totalWords;
     inFile >> wordsToPrint;
 
+    arr = new dsString[totalWords];
+
     dsString line;
+    int i = 0;
     char buffer[80] ={0};
 
     //while the file isnt at the end
     while(!inFile.eof()){
         inFile >> buffer;
         line = buffer;
-        vec.push_back(line);
+        arr[i] = line;
+        i++;
     }
 
     inFile.close();
 }
 
-void readandWrite::writeOutput(dsVector<dsString>& vec, char * output_file, int& wordsToPrint){
+void readandWrite::writeOutput(dsString*& arr, char * output_file, int& wordsToPrint){
     ofstream outFile(output_file);
 
     if (!outFile)
         cout << output_file << " COULD NOT BE READ." << endl;
 
     for(int i = 0; i < wordsToPrint; i++){
-        outFile << vec[i] << endl;
+        outFile << arr[i] << endl;
     }
 
     outFile.close();
