@@ -1,21 +1,21 @@
 #include "algorithms.h"
 
-void Algorithms::quickSort(dsVector<dsString>& vec, int low, int high){
+void Algorithms::quickSort_Length(dsVector<dsString>& vec, int low, int high){
     if(low >= high)
         return;
 
     int i, j;
 
-    dualPivot(vec, low, high, i, j);
+    dualPivot_Length(vec, low, high, i, j);
 
-    quickSort(vec, low, i - 1);
+    quickSort_Length(vec, low, i - 1);
     //checks middle to see if it is sorted or not
     if(!isSorted_Length(vec, i + 1, j - 1))
-        quickSort(vec, i + 1, j - 1);
-    quickSort(vec, j + 1, high);
+        quickSort_Length(vec, i + 1, j - 1);
+    quickSort_Length(vec, j + 1, high);
 }
 
-void Algorithms::dualPivot(dsVector<dsString>& vec, int low, int high, int& left, int& right){
+void Algorithms::dualPivot_Length(dsVector<dsString>& vec, int low, int high, int& left, int& right){
     if(vec[low].size() > vec[high].size())
         swap(&vec[high], &vec[low]);
 

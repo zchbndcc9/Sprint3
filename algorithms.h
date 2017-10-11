@@ -7,8 +7,8 @@
 
 class Algorithms {
 public:
-    void quickSort(dsVector<dsString>&, int, int);
-    void dualPivot(dsVector<dsString>&, int, int, int&, int&);
+    void quickSort_Length(dsVector<dsString>&, int, int);
+    void dualPivot_Length(dsVector<dsString>&, int, int, int&, int&);
     void quickSort_String(dsVector<dsString>&, int, int);
     void dualPivot_String(dsVector<dsString>&, int, int, int&, int&);
 
