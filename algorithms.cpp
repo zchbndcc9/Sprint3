@@ -1,24 +1,24 @@
 #include "algorithms.h"
 
-void Algorithms::quickSort_Length(dsVector<dsString>& vec, int low, int high){
+void Algorithms::quickSort_Length(dsString*& arr, int low, int high){
     if(low >= high)
         return;
 
     int i, j;
 
-    dualPivot_Length(vec, low, high, i, j);
+    dualPivot_Length(arr, low, high, i, j);
 
-    quickSort_Length(vec, low, i - 1);
+    quickSort_Length(arr, low, i - 1);
     //checks middle to see if it is sorted or not
-    if(!isSorted_Length(vec, i + 1, j - 1)){
-        quickSort_Length(vec, i + 1, j - 1);
+    if(!isSorted_Length(arr, i + 1, j - 1)){
+        quickSort_Length(arr, i + 1, j - 1);
     }
-    quickSort_Length(vec, j + 1, high);
+    quickSort_Length(arr, j + 1, high);
 }
 
-void Algorithms::dualPivot_Length(dsVector<dsString>& vec, int low, int high, int& left, int& right){
-    if(vec[low].size() > vec[high].size())
-        swap(&vec[high], &vec[low]);
+void Algorithms::dualPivot_Length(dsString*& arr, int low, int high, int& left, int& right){
+    if(arr[low].size() > arr[high].size())
+        swap(&arr[high], &arr[low]);
 
     //traverse left to right
     int lp, i;
@@ -29,42 +29,42 @@ void Algorithms::dualPivot_Length(dsVector<dsString>& vec, int low, int high, in
     right = high - 1;
 
     //Left pivot
-    lp = vec[low].size();
+    lp = arr[low].size();
     //Right pivot
-    rp = vec[high].size();
+    rp = arr[high].size();
 
     while(i <= right){
         //traverse from left to right
-        if(vec[i].size() < lp){
-            swap(&vec[i++], &vec[left++]);
-        } else if(vec[i].size() > rp){
-            swap(&vec[i], &vec[right--]);
+        if(arr[i].size() < lp){
+            swap(&arr[i++], &arr[left++]);
+        } else if(arr[i].size() > rp){
+            swap(&arr[i], &arr[right--]);
         } else {
             i++;
         }
     }
 
-    swap(&vec[low], &vec[--left]);
-    swap(&vec[high], &vec[++right]);
+    swap(&arr[low], &arr[--left]);
+    swap(&arr[high], &arr[++right]);
 }
 
-void Algorithms::quickSort_String(dsVector<dsString>& vec, int low, int high){
+void Algorithms::quickSort_String(dsString*& arr, int low, int high){
     if(low >= high)
         return;
 
     int i, j;
 
-    dualPivot_String(vec, low, high, i, j);
+    dualPivot_String(arr, low, high, i, j);
 
-    quickSort_String(vec, low, i - 1);
+    quickSort_String(arr, low, i - 1);
     //checks middle to see if it is sorted or not
-    quickSort_String(vec, i + 1, j - 1);
-    quickSort_String(vec, j + 1, high);
+    quickSort_String(arr, i + 1, j - 1);
+    quickSort_String(arr, j + 1, high);
 }
 
-void Algorithms::dualPivot_String(dsVector<dsString>& vec, int low, int high, int& left, int& right){
-    if(vec[low] > vec[high])
-        swap(&vec[high], &vec[low]);
+void Algorithms::dualPivot_String(dsString*& arr, int low, int high, int& left, int& right){
+    if(arr[low] > arr[high])
+        swap(&arr[high], &arr[low]);
 
     int i;
     //traverse left to right
@@ -76,60 +76,60 @@ void Algorithms::dualPivot_String(dsVector<dsString>& vec, int low, int high, in
     right = high - 1;
 
     //Left pivot
-    lp = vec[low];
+    lp = arr[low];
     //Right pivot
-    rp = vec[high];
+    rp = arr[high];
 
     while(i <= right){
         //traverse from left to right
-        if(lp > vec[i]){
-            swap(&vec[i++], &vec[left++]);
-        } else if(vec[i] > rp){
-            swap(&vec[i], &vec[right--]);
+        if(lp > arr[i]){
+            swap(&arr[i++], &arr[left++]);
+        } else if(arr[i] > rp){
+            swap(&arr[i], &arr[right--]);
         } else {
             i++;
         }
     }
 
-    swap(&vec[low], &vec[--left]);
-    swap(&vec[high], &vec[++right]);
+    swap(&arr[low], &arr[--left]);
+    swap(&arr[high], &arr[++right]);
 }
 
-int Algorithms::medianOfThree(const dsVector<dsString>& vec, int low, int high){
+int Algorithms::medianOfThree(const dsString*& arr, int low, int high){
     int mid = (high+low)/2;
 
-    if(vec[high] > vec[low]) {
-        return (vec[low] > vec[mid]) ? low : mid;
+    if(arr[high] > arr[low]) {
+        return (arr[low] > arr[mid]) ? low : mid;
     } else {
-        return (vec[mid] > vec[high]) ? mid : high;
+        return (arr[mid] > arr[high]) ? mid : high;
     }
 }
 
-void Algorithms::insertionSort(dsVector<dsString>& vec, int low, int high){
+void Algorithms::insertionSort(dsString*& arr, int low, int high){
     for(int i = low + 1; i <= high; i++){
         int j = i;
-        while(j > 0 && vec[j-1] > vec[j]){
-            swap(&vec[j], &vec[j-1]);
+        while(j > 0 && arr[j-1] > arr[j]){
+            swap(&arr[j], &arr[j-1]);
             j--;
         }
     }
 }
 
-void Algorithms::sortLength(dsVector<dsString>& vec, int low, int high, const int wordsToSort){
+void Algorithms::sortLength(dsString*& arr, int low, int high, const int wordsToSort){
     int wordsSorted = 0;
 
-    quickSort_Length(vec, low, high);
+    quickSort_Length(arr, low, high);
 }
 
-void Algorithms::sortString(dsVector<dsString>& vec, int low, int high){
+void Algorithms::sortString(dsString*& arr, int low, int high){
     int i = low;
     int j = low;
 
     while(j < high){
-        if(vec[j+1].size() > vec[j].size()){
+        if(arr[j+1].size() > arr[j].size()){
             //if less than 30, insertion sort
-            ((j - i) <= 29) ? insertionSort(vec, i, j) :
-                              quickSort_String(vec, i, j);
+            ((j - i) <= 29) ? insertionSort(arr, i, j) :
+                              quickSort_String(arr, i, j);
             i = j + 1;
             j++;
         } else {
@@ -138,20 +138,19 @@ void Algorithms::sortString(dsVector<dsString>& vec, int low, int high){
     }
 }
 
-bool Algorithms::isSorted_Length(const dsVector<dsString>& vec, int low, int high){
+bool Algorithms::isSorted_Length(const dsString* arr, int low, int high){
     for(int i = low; i < (high - 1); i++){
-        if(vec[i].size() > vec[i+1].size())
+        if(arr[i].size() > arr[i+1].size())
             return false;
     }
 
     return true;
 }
 
-bool Algorithms::isSorted(const dsVector<dsString>& vec, int low, int high){
+bool Algorithms::isSorted(const dsString* arr, int low, int high){
     for(int i = low; i < (high - 1); i++){
-        if(vec[i] > vec[i+1])
+        if(arr[i] > arr[i+1])
             return false;
     }
-
     return true;
 }
