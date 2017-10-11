@@ -106,7 +106,7 @@ int Algorithms::medianOfThree(const dsVector<dsString>& vec, int low, int high){
 }
 
 void Algorithms::insertionSort(dsVector<dsString>& vec, int low, int high){
-    for(int i = low + 1; i < high; i++){
+    for(int i = low + 1; i <= high; i++){
         int j = i;
         while(j > 0 && vec[j-1] > vec[j]){
             swap(&vec[j], &vec[j-1]);
