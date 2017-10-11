@@ -10,9 +10,8 @@ void Algorithms::quickSort_Length(dsString*& arr, int low, int high){
 
     quickSort_Length(arr, low, i - 1);
     //checks middle to see if it is sorted or not
-    if(!isSorted_Length(arr, i + 1, j - 1)){
+    if(!isSorted_Length(arr, i + 1, j - 1))
         quickSort_Length(arr, i + 1, j - 1);
-    }
     quickSort_Length(arr, j + 1, high);
 }
 
