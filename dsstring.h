@@ -25,10 +25,10 @@ public:
     //overloaded "==" using pass by reference
     bool operator== (const dsString&);
     //overloaded greater than symbol ">" using pass by reference
-    bool operator> (const dsString&);
+    bool operator> (const dsString&) const;
     char& operator[] (const int);
     //compares two strings
-    int compareStrings(const dsString& string);
+    int compareStrings(const dsString& string) const;
 
 
     void clear(); //clears string

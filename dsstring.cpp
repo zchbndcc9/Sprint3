@@ -30,7 +30,7 @@ dsString::dsString(const dsString& S){
     }
 }
 //overloads the ">" operator using pass by reference
-bool dsString::operator > (const dsString& rSide){
+bool dsString::operator > (const dsString& rSide) const{
     return this->compareStrings(rSide) > 0;
 }
 
@@ -143,7 +143,7 @@ const char*dsString::c_str() const{
 }
 
 //compares the contents of strings input
-int dsString::compareStrings(const dsString& string){
+int dsString::compareStrings(const dsString& string) const{
 
     return strcmp(strArr, string.c_str()); //uses strcmp function to compare strings
 }
