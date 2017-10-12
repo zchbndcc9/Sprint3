@@ -1,6 +1,10 @@
 #include "sorter.h"
 
+<<<<<<< HEAD
 Sorter::Sorter() {
+=======
+Sorter::Sorter(){
+>>>>>>> 7ee4a85b9c8f959f27e23581cb680508bca8c00a
 
 }
 
@@ -37,7 +41,11 @@ void Sorter::readInput(char* input_file){
     inFile.close();
 }
 
+<<<<<<< HEAD
 void Sorter::writeOutput(char* output_file){
+=======
+void Sorter::writeOutput(char * output_file){
+>>>>>>> 7ee4a85b9c8f959f27e23581cb680508bca8c00a
     ofstream outFile(output_file);
 
     if (!outFile)
