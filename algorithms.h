@@ -4,16 +4,8 @@
 #include <iostream>
 #include <dsstring.h>
 
-class Algorithms {
+struct Algorithms {
 public:
-    //quickSort by length
-    void quickSort_Length(dsString*&, int, int);
-    void dualPivot_Length(dsString*&, int, int, int&, int&);
-
-    //quickSort alphabetically
-    void quickSort_String(dsString*&, int, int, int);
-    void charPivot(dsString*&, int, int, int&, int&, int&, int);
-
     //find effective pivot
     int medianOfThree(const dsString*&, int, int);
 
@@ -32,6 +24,15 @@ public:
         *a = *b;
         *b = temp;
     }
+
+private:
+    //quickSort by length
+    void quickSort_Length(dsString*&, int, int);
+    void dualPivot_Length(dsString*&, int, int, int&, int&);
+
+    //quickSort alphabetically
+    void quickSort_String(dsString*&, int, int, int);
+    void charPivot(dsString*&, int, int, int&, int&, int&, int);
 };
 
 #endif // ALGORITHMS_H
