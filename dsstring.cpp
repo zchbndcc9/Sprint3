@@ -1,6 +1,7 @@
 #include "dsstring.h"
 #include <cstring>
 #include <iostream>
+
 //default constructor
 dsString::dsString()
 {
