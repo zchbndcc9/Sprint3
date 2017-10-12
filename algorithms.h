@@ -11,8 +11,8 @@ public:
     void dualPivot_Length(dsString*&, int, int, int&, int&);
 
     //quickSort alphabetically
-    void quickSort_String(dsString*&, int, int);
-    void dualPivot_String(dsString*&, int, int, int&, int&);
+    void quickSort_String(dsString*&, int, int, int);
+    void charPivot(dsString*&, int, int, int&, int&, int&, int);
 
     //find effective pivot
     int medianOfThree(const dsString*&, int, int);

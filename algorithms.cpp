@@ -15,7 +15,7 @@ void Algorithms::quickSort_Length(dsString*& arr, int low, int high){
     quickSort_Length(arr, j + 1, high);
 }
 
-void Algorithms::dualPivot_Length(dsString*& arr, int low, int high, int& left, int& right){
+void Algorithms::dualPivot_Length(dsString*& arr, int low, int high, int& lt, int& gt){
     if(arr[low].size() > arr[high].size())
         swap(&arr[high], &arr[low]);
 
@@ -24,74 +24,59 @@ void Algorithms::dualPivot_Length(dsString*& arr, int low, int high, int& left, 
     //traverse right to left
     int rp;
 
-    left = i = low + 1;
-    right = high - 1;
+    lt = i = low + 1;
+    gt = high - 1;
 
     //Left pivot
     lp = arr[low].size();
     //Right pivot
     rp = arr[high].size();
 
-    while(i <= right){
+    while(i <= gt){
         //traverse from left to right
         if(arr[i].size() < lp){
-            swap(&arr[i++], &arr[left++]);
+            swap(&arr[i++], &arr[lt++]);
         } else if(arr[i].size() > rp){
-            swap(&arr[i], &arr[right--]);
+            swap(&arr[i], &arr[gt--]);
         } else {
             i++;
         }
     }
 
-    swap(&arr[low], &arr[--left]);
-    swap(&arr[high], &arr[++right]);
+    swap(&arr[low], &arr[--lt]);
+    swap(&arr[high], &arr[++gt]);
 }
 
-void Algorithms::quickSort_String(dsString*& arr, int low, int high){
-    if(low >= high)
+void Algorithms::quickSort_String(dsString*& arr, int low, int high, int ch){
+    if(low >= high || ch > arr[low].size())
         return;
 
-    int i, j;
+    int i, j, v;
 
-    dualPivot_String(arr, low, high, i, j);
+    charPivot(arr, low, high, i, j, v, ch);
 
-    quickSort_String(arr, low, i - 1);
+    quickSort_String(arr, low, i - 1, ch);
     //checks middle to see if it is sorted or not
-    quickSort_String(arr, i + 1, j - 1);
-    quickSort_String(arr, j + 1, high);
+    if(v >= 0)
+        quickSort_String(arr, i + 1, j - 1, ch + 1);
+    quickSort_String(arr, j + 1, high, ch);
 }
 
-void Algorithms::dualPivot_String(dsString*& arr, int low, int high, int& left, int& right){
-    if(arr[low] > arr[high])
-        swap(&arr[high], &arr[low]);
+void Algorithms::charPivot(dsString*& arr, int low, int high, int& lt, int& gt, int& piv, int ch){
+    lt = low, gt = high;
+    piv = arr[low][ch];
+    int i = low + 1;
 
-    int i;
-    //traverse left to right
-    dsString lp;
-    //traverse right to left
-    dsString rp;
-
-    left = i = low + 1;
-    right = high - 1;
-
-    //Left pivot
-    lp = arr[low];
-    //Right pivot
-    rp = arr[high];
-
-    while(i <= right){
-        //traverse from left to right
-        if(lp > arr[i]){
-            swap(&arr[i++], &arr[left++]);
-        } else if(arr[i] > rp){
-            swap(&arr[i], &arr[right--]);
+    while (i <= gt){
+        int t = arr[i][ch];
+        if (t < piv){
+            swap(&arr[i++], &arr[lt++]);
+        } else if (t > piv){
+            swap(&arr[i], &arr[gt--]);
         } else {
             i++;
         }
     }
-
-    swap(&arr[low], &arr[--left]);
-    swap(&arr[high], &arr[++right]);
 }
 
 int Algorithms::medianOfThree(const dsString*& arr, int low, int high){
@@ -124,11 +109,12 @@ void Algorithms::sortString(dsString*& arr, int low, int high){
     int i = low;
     int j = low;
 
+    //MAKE GO FAST
     while(j < high){
         if(arr[j+1].size() > arr[j].size()){
             //if less than 30, insertion sort
             ((j - i) <= 29) ? insertionSort(arr, i, j) :
-                              quickSort_String(arr, i, j);
+                              quickSort_String(arr, i, j, 0);
             i = j + 1;
             j++;
         } else {
