@@ -26,8 +26,7 @@ void readandWrite::readInput(dsString*& arr, char* input_file, int& wordsToPrint
     //while the file isnt at the end
     while(!inFile.eof()){
         inFile >> buffer;
-        line = buffer;
-        arr[i] = line;
+        arr[i] = buffer;
         i++;
     }
 
