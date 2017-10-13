@@ -21,6 +21,7 @@ public:
 
     ~Sorter();
 private:
+    Algorithms alg;
     dsString** s_ptr;
     int totalWords;
     int wordsToSort;

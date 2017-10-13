@@ -1,15 +1,23 @@
 #include "sorter.h"
+#include <chrono>
 
-<<<<<<< HEAD
-Sorter::Sorter() {
-=======
-Sorter::Sorter(){
->>>>>>> 7ee4a85b9c8f959f27e23581cb680508bca8c00a
+Sorter::Sorter() : alg(){
 
 }
 
 void Sorter::sort(){
+    cout << "Sorting..." << endl;
+    std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+    alg.sortLength(s_ptr, 0, totalWords);
+    std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+    std::cout << duration << " milliseconds" << endl;
 
+    t1 = std::chrono::high_resolution_clock::now();
+    alg.sortString(s_ptr, 0, totalWords);
+    t2 = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+    std::cout << duration << " milliseconds" << endl;
 }
 
 void Sorter::readInput(char* input_file){
@@ -32,7 +40,7 @@ void Sorter::readInput(char* input_file){
     char buffer[80] ={0};
 
     //while the file isnt at the end
-    while(!inFile.eof()){
+    while(!inFile.eof() && i < totalWords){
         inFile >> buffer;
         s_ptr[i] = new dsString(buffer);
         i++;
@@ -41,11 +49,7 @@ void Sorter::readInput(char* input_file){
     inFile.close();
 }
 
-<<<<<<< HEAD
 void Sorter::writeOutput(char* output_file){
-=======
-void Sorter::writeOutput(char * output_file){
->>>>>>> 7ee4a85b9c8f959f27e23581cb680508bca8c00a
     ofstream outFile(output_file);
 
     if (!outFile)
