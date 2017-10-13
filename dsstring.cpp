@@ -104,7 +104,7 @@ dsString dsString:: substring(int startOfStr, int endOfStr){
 }
 
 //overloads "[]" operator
-char&dsString::operator [](const int pos){
+char& dsString::operator [](const int pos){
     int position = 0;
     if(pos < 0){ // checks for negitive position input
         position = length + pos;
