@@ -11,7 +11,9 @@ public:
 
     void insertionSort(dsString**&, int, int);
 
+    //Sort strings by length
     void sortLength(dsString**&, int, int);
+    //Sort alphabetically
     void sortString(dsString**&, int, int);
 
     //test to see if arr portion is sorted
@@ -30,9 +32,9 @@ private:
     void quickSort_Length(dsString**&, int, int);
     void dualPivot_Length(dsString**&, int, int, int&, int&);
 
-    //quickSort alphabetically
+    //quickSort alphabetically using a 3 qay partition
     void quickSort_String(dsString**&, int, int, int);
-    void charPivot(dsString**&, int, int, int&, int&, int&, int);
+    void partition_threeWay(dsString**&, int, int, int&, int&, char&, int);
 };
 
 #endif // ALGORITHMS_H
