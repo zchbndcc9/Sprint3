@@ -53,12 +53,10 @@ OBJECTS_DIR   = ./
 SOURCES       = ../main.cpp \
 		../dsstring.cpp \
 		../algorithms.cpp \
-		../readinandparse.cpp \
 		../sorter.cpp 
 OBJECTS       = main.o \
 		dsstring.o \
 		algorithms.o \
-		readinandparse.o \
 		sorter.o
 DIST          = /home/Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.9.1/gcc_64/mkspecs/common/unix.conf \
@@ -235,12 +233,9 @@ DIST          = /home/Qt/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.9.1/gcc_64/mkspecs/features/lex.prf \
 		../../Sprint3.pro algorithms.h \
 		dsstring.h \
-		dsvector.h \
-		readinandparse.h \
 		sorter.h ../main.cpp \
 		../dsstring.cpp \
 		../algorithms.cpp \
-		../readinandparse.cpp \
 		../sorter.cpp
 QMAKE_TARGET  = Sprint3
 DESTDIR       = 
@@ -644,8 +639,7 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../main.cpp ../readinandparse.h \
-		../dsvector.h \
+main.o: ../main.cpp ../sorter.h \
 		../dsstring.h \
 		../algorithms.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
@@ -653,15 +647,13 @@ main.o: ../main.cpp ../readinandparse.h \
 dsstring.o: ../dsstring.cpp ../dsstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dsstring.o ../dsstring.cpp
 
-algorithms.o: ../algorithms.cpp ../algorithms.h
+algorithms.o: ../algorithms.cpp ../algorithms.h \
+		../dsstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o algorithms.o ../algorithms.cpp
 
-readinandparse.o: ../readinandparse.cpp ../readinandparse.h \
-		../dsvector.h \
-		../dsstring.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o readinandparse.o ../readinandparse.cpp
-
-sorter.o: ../sorter.cpp ../sorter.h
+sorter.o: ../sorter.cpp ../sorter.h \
+		../dsstring.h \
+		../algorithms.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sorter.o ../sorter.cpp
 
 ####### Install
