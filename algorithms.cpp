@@ -51,71 +51,33 @@ void Algorithms::quickSort_String(dsString**& arr, int low, int high, int ch){
     if(low >= high)
         return;
 
-    char v;
     int i, j;
 
-    partition_threeWay(arr, low, high, i, j, v, ch);
+    dualPivot_alph(arr, low, high, i, j, ch);
 
-    quickSort_String(arr, low, j - 1, ch);
-    if(i == high && (*arr[i])[ch] == v)
-        i++;
+    quickSort_String(arr, low, i - 1, ch);
     //checks middle to see if it is sorted or not
-    if(v >= 0)
-        quickSort_String(arr, j, i, ch + 1);
-    quickSort_String(arr, i + 1, high, ch);
+    quickSort_String(arr, i, j, ch + 1);
+    quickSort_String(arr, j + 1, high, ch);
 }
 
-void Algorithms::partition_threeWay(dsString**& arr, int low, int high, int& lt, int& gt, char& piv, int iChar){
-    //iterators to indicate ramge of strings with a value
-    //equal to pivot char
-    int p, q;
+void Algorithms::dualPivot_alph(dsString**& arr, int low, int high, int& lt, int& gt, int ch){
+    lt = low, gt = high;
 
-    //Start on left
-    p = low - 1;
-    lt = low - 1;
+    int piv = (*arr[low])[ch];
 
-    //Start on right
-    q = high;
-    gt = high;
+    int i = low + 1;
 
-    //character used as pivot
-    piv = (*arr[high])[iChar];
+    while (i <= gt){
+        int t = (*arr[i])[ch];
 
-    while(lt < gt){
-        while((*arr[++lt])[iChar] < piv){
-            if(lt == high)
-                break;
+        if (t < piv){
+            swap(&arr[i++], &arr[lt++]);
+        } else if (t > piv){
+            swap(&arr[i], &arr[gt--]);
+        } else {
+            i++;
         }
-        while((*arr[--gt])[iChar] > piv){
-            if(gt == low)
-                break;
-        }
-        if(lt > gt)
-            break;
-        swap(&arr[lt], &arr[gt]);
-
-        if((*arr[lt])[iChar] == piv)
-            swap(&arr[lt], &arr[++p]);
-        if((*arr[gt])[iChar] == piv)
-            swap(&arr[gt], &arr[--q]);
-    }
-
-    if(p == q){
-        if (piv > 0){
-            int i = lt;
-            quickSort_String(arr, low, high, iChar + 1);
-            return;
-        }
-    }
-
-    if((*arr[lt])[iChar] > piv)
-        lt++;
-
-    for(int k = low; k <= p; k++){
-        swap(&arr[k], &arr[gt--]);
-    }
-    for(int k = high; k >= q; k--){
-        swap(&arr[k], &arr[lt++]);
     }
 }
 

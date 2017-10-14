@@ -34,7 +34,7 @@ private:
 
     //quickSort alphabetically using a 3 qay partition
     void quickSort_String(dsString**&, int, int, int);
-    void partition_threeWay(dsString**&, int, int, int&, int&, char&, int);
+    void dualPivot_alph(dsString**&, int, int, int&, int&, int);
 };
 
 #endif // ALGORITHMS_H
